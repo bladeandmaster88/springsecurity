@@ -1,0 +1,137 @@
+<html>
+<head>
+    <title>系统设置</title>
+    <link rel="stylesheet" type="text/css" href="./css/reset.css">
+    <link rel="stylesheet" type="text/css" href="./css/common.css">
+    <link rel="stylesheet" type="text/css" href="./css/systemSet.css">
+</head>
+<body>
+    <div class="subpagewrapinner">
+        <div class="table-wrap">
+            <div class="menu-bar">
+                <div class="title">
+                    <span class="bar-blue"></span>系统管理
+                </div>
+                <div class="menu">
+                    <ul>
+                        <li class="current">用户管理</li>
+                        <li>角色管理</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="action-btn">
+                <button class="add-btn" onclick="add()">新增</button>
+            </div>
+            <div class="table-outter">
+                <table border="0" class="rollcall-table user-table current" cellspacing="0">
+                    <thead>
+                    <tr style="display: table-row;">
+                        <th>用户名称</th>
+                        <th>用户账号</th>
+                        <th>创建人</th>
+                        <th>创建时间</th>
+                        <th>修改人</th>
+                        <th>修改时间</th>
+                        <th>账号状态</th>
+                        <th style="width:200px">操作</th>
+                        <th>角色</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+                <table border="0" class="rollcall-table role-table" cellspacing="0">
+                    <thead>
+                    <tr style="display: table-row;">
+                        <th>角色名称</th>
+                        <th style="width:70%">角色菜单</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div id="addUser" style="padding: 10px 18px">
+        <div class="layerWrap">
+            <div class="lineWrapper">
+                <span class="label">用户名称</span><input id="username" name="username" type="text" class="input-txt" value=""
+                                                      maxlength="25"/>
+            </div>
+            <div class="lineWrapper">
+                <span class="label">用户账号</span><input id="usercode" name="usercode" type="text" class="input-txt" value=""
+                                                      maxlength="25"/>
+            </div>
+            <div class="lineWrapper">
+                <span class="label">用户密码</span><input id="password" name="password" type="password" class="input-txt"
+                                                      value="" maxlength="25"/>
+            </div>
+            <div class="lineWrapper">
+                <span class="label">用户角色</span>
+                <div class="roleSelect" id="user-role">
+                    <select>
+                    </select>
+                    <div class="select-cover">
+                        <div class="select-value"></div>
+                        <div class="selectButton"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="editInfo" style="padding: 10px 18px">
+        <div class="layerWrap">
+            <div class="lineWrapper">
+                <span class="label">用户账号 </span><input id="editusercode" name="editusercode"
+                                                       type="text" class="input-txt input-disable" value=""
+                                                       readonly="readonly" maxlength="25"/>
+            </div>
+            <div class="lineWrapper">
+                <span class="label">用户名称</span><input id="editusername" name="editusername"
+                                                      type="text" class="input-txt" value="" maxlength="25"/>
+            </div>
+            <div class="lineWrapper">
+                <span class="label">用户密码</span><input type="password" id="editpassword" name="editpassword"
+                                                      type="text" class="input-txt" value="" maxlength="25"/>
+            </div>
+        </div>
+    </div>
+
+    <div id="addRoleInfo" style="padding: 10px 18px">
+        <div class="layerWrap">
+            <div class="lineWrapper">
+                <span class="label">角色名称 </span><input id="addRoleAccount" name="addRoleAccount"
+                                                       type="text" class="input-txt" value="" maxlength="25"/>
+            </div>
+            <div class="lineWrapper">
+                <span class="label">角色菜单</span>
+                <div class="authorityList clearfix">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="editRoleInfo" style="padding: 10px 18px">
+        <div class="layerWrap">
+            <div class="lineWrapper">
+                <span class="label">角色名称</span>
+                <input id="editRole" name="editRole"
+                       type="text" class="input-txt input-disable" value="" readonly="readonly" maxlength="25"/>
+            </div>
+            <div class="lineWrapper">
+                <span class="label">角色菜单</span>
+                <div class="authorityList clearfix">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="./js/jquery.min.js"></script>
+    <script type="text/javascript" src="./js/layui/layui.js"></script>
+    <script type="text/javascript" src="./js/dateFormat.js"></script>
+    <script type="text/javascript" src="./js/dataChangeByAjax.js"></script>
+    <script type="text/javascript" src="./js/layerMsg.js"></script>
+    <script type="text/javascript" src="./js/systemSet/systemSetFunc.js"></script>
+</body>
+</html>

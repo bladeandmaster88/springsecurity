@@ -1,0 +1,21 @@
+/*css reset*/
+html, body, div, p, ul, li, dl, dt, dd, h1, h2, h3, h4, h5, h6, form, input, select, button, textarea, iframe, table, th, td { margin: 0; padding: 0; }
+img { border: 0 none; vertical-align: top; }
+ul, li { list-style-type: none; }         
+h1, h2, h3, h4, h5, h6 { font-size: 14px; font-weight: normal;}
+body, input, select, button, textarea { font-size: 14px; font-family:"Microsoft YaHei"; }
+button { cursor: pointer; }
+i, em { font-style: normal; }
+body {color: #363636;}
+a, a:link {text-decoration: none;}
+a:focus { outline: none; }
+.clear { display: block!important; float: none!important; clear: both; overflow: hidden; width: auto!important; height: 0!important; margin: 0 auto!important; padding: 0!important; font-size: 0; line-height: 0; }
+.clearfix:after{visibility:hidden;display:block;font-size:0;content: "";clear:both;height: 0;}
+.fl{ float: left; } 
+.fr { float: right; }
+input{height:auto; outline:none;border:none; vertical-align:bottom;+vertical-align:middle !important; _vertical-align:middle; line-height:normall;}
+textarea,button,select{resize: none;outline:none;border:none;} 
+textarea:focus,button {outline: none;}
+*{box-sizing:border-box}
+.fr{float:right}
+

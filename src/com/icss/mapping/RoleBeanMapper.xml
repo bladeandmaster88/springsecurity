@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.icss.dao.RoleBeanMapper">
+    <resultMap id="BaseResultMap" type="com.icss.model.RoleBean">
+        <id column="ID" property="id" jdbcType="VARCHAR"/>
+        <result column="NAME" property="name" jdbcType="VARCHAR"/>
+        <result column="STATUS" property="status" jdbcType="DECIMAL"/>
+        <result column="ROLE_DESC" property="roleDesc" jdbcType="VARCHAR"/>
+        <result column="CREATOR" property="creator" jdbcType="VARCHAR"/>
+        <result column="CREATE_TIME" property="createTime" jdbcType="DATE"/>
+        <result column="UPDATER" property="updater" jdbcType="VARCHAR"/>
+        <result column="UPDATE_TIME" property="updateTime" jdbcType="DATE"/>
+        <result column="REMARK" property="remark" jdbcType="VARCHAR"/>
+        <result column="CN_NAME" property="cnName" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+    ID, NAME, STATUS, ROLE_DESC, CREATOR, CREATE_TIME, UPDATER, UPDATE_TIME, REMARK
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from MACS_T_ROLE
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from MACS_T_ROLE
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+
+    <insert id="addRole" parameterType="com.icss.model.RoleBean">
+    insert into MACS_T_ROLE (ID, NAME, STATUS, 
+      ROLE_DESC, CREATOR, CREATE_TIME, 
+      UPDATER, UPDATE_TIME, REMARK
+      )
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{status,jdbcType=DECIMAL}, 
+      #{roleDesc,jdbcType=VARCHAR}, #{creator,jdbcType=VARCHAR}, #{createTime,jdbcType=DATE}, 
+      #{updater,jdbcType=VARCHAR}, #{updateTime,jdbcType=DATE}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+
+    <delete id="delRoleById" parameterType="java.lang.String">
+    delete from MACS_T_ROLE
+    where ID = #{roleId,jdbcType=VARCHAR}
+  </delete>
+
+    <insert id="insertSelective" parameterType="com.icss.model.RoleBean">
+        insert into MACS_T_ROLE
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                ID,
+            </if>
+            <if test="name != null">
+                NAME,
+            </if>
+            <if test="status != null">
+                STATUS,
+            </if>
+            <if test="roleDesc != null">
+                ROLE_DESC,
+            </if>
+            <if test="creator != null">
+                CREATOR,
+            </if>
+            <if test="createTime != null">
+                CREATE_TIME,
+            </if>
+            <if test="updater != null">
+                UPDATER,
+            </if>
+            <if test="updateTime != null">
+                UPDATE_TIME,
+            </if>
+            <if test="remark != null">
+                REMARK,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=DECIMAL},
+            </if>
+            <if test="roleDesc != null">
+                #{roleDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="creator != null">
+                #{creator,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=DATE},
+            </if>
+            <if test="updater != null">
+                #{updater,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=DATE},
+            </if>
+            <if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.icss.model.RoleBean">
+        update MACS_T_ROLE
+        <set>
+            <if test="name != null">
+                NAME = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                STATUS = #{status,jdbcType=DECIMAL},
+            </if>
+            <if test="roleDesc != null">
+                ROLE_DESC = #{roleDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="creator != null">
+                CREATOR = #{creator,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                CREATE_TIME = #{createTime,jdbcType=DATE},
+            </if>
+            <if test="updater != null">
+                UPDATER = #{updater,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null">
+                UPDATE_TIME = #{updateTime,jdbcType=DATE},
+            </if>
+            <if test="remark != null">
+                REMARK = #{remark,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where ID = #{id,jdbcType=VARCHAR}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="com.icss.model.RoleBean">
+        update MACS_T_ROLE
+        set NAME = #{name,jdbcType=VARCHAR},
+          STATUS = #{status,jdbcType=DECIMAL},
+          ROLE_DESC = #{roleDesc,jdbcType=VARCHAR},
+          CREATOR = #{creator,jdbcType=VARCHAR},
+          CREATE_TIME = #{createTime,jdbcType=DATE},
+          UPDATER = #{updater,jdbcType=VARCHAR},
+          UPDATE_TIME = #{updateTime,jdbcType=DATE},
+          REMARK = #{remark,jdbcType=VARCHAR}
+        where ID = #{id,jdbcType=VARCHAR}
+  </update>
+
+    <!-- 根据菜单 找到可以访问的角色 -->
+    <select id="selectByMenuNo" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        t.ID as id,
+        t.NAME as name ,
+        t.STATUS as status,
+        t.ROLE_DESC as roleDesc,
+        t.CREATOR as creator,
+        t.CREATE_TIME as createTime,
+        t.UPDATER as updater,
+        t.UPDATE_TIME as updateTime,
+        t.REMARK as remark
+        from MACS_T_ROLE t
+        left join macs_t_role_menu m on t.ID=m.ROLE_ID
+        where M.MENU_NO = #{menuNo,jdbcType=VARCHAR}
+  </select>
+
+    <!-- 查找用户拥有的角色 -->
+    <select id="selectByUserId" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+            t.id as id,
+            t.name as name ,
+            t.status as status,
+            t.role_desc as roleDesc,
+            t.CREATOR as creator,
+            t.CREATE_TIME as createTime,
+            t.UPDATER as updater,
+            t.UPDATE_TIME as updateTime,
+            t.REMARK as remark
+        from MACS_T_ROLE t
+        left join macs_t_user_role u
+        on t.id=u.role_id
+        where u.USER_ID = #{userId,jdbcType=VARCHAR}
+  </select>
+
+    <select id="selectByModel" resultMap="BaseResultMap" parameterType="com.icss.model.RoleBean">
+        select
+        <include refid="Base_Column_List"/>
+        from MACS_T_ROLE
+        where 1=1
+        and STATUS = #{status,jdbcType=VARCHAR}
+    </select>
+
+    <select id="getAllRole" resultMap="BaseResultMap">
+  	      select * from MACS_T_ROLE
+  </select>
+</mapper>

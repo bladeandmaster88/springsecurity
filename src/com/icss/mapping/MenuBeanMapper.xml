@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.icss.dao.MenuBeanMapper" >
+  <resultMap id="BaseResultMap" type="com.icss.model.MenuBean" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="MENU_NO" property="menuNo" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="MENU_URL" property="menuUrl" jdbcType="VARCHAR" />
+    <result column="TYPE" property="type" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="DECIMAL" />
+    <result column="MENU_LEVEL" property="menuLevel" jdbcType="DECIMAL" />
+    <result column="SUPER_NO" property="superNo" jdbcType="VARCHAR" />
+    <result column="MENU_DESC" property="menuDesc" jdbcType="VARCHAR" />
+    <result column="CREATOR" property="creator" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="DATE" />
+    <result column="UPDATER" property="updater" jdbcType="VARCHAR" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="DATE" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="BG_URL" property="bgUrl" jdbcType="VARCHAR" />
+     <result column="MENU_URL_TWO" property="menuUrlTwo" jdbcType="VARCHAR" />
+    <result column="STYLE_INFO" property="styleInfo" jdbcType="VARCHAR" />
+     <result column="BUTTON_NAME" property="buttonName" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <resultMap id="MenuModelMap" type="com.icss.model.MenuModel" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="MENU_NO" property="menuNo" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="MENU_URL" property="menuUrl" jdbcType="VARCHAR" />
+    <result column="TYPE" property="type" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="DECIMAL" />
+    <result column="MENU_LEVEL" property="menuLevel" jdbcType="DECIMAL" />
+    <result column="SUPER_NO" property="superNo" jdbcType="VARCHAR" />
+    <result column="MENU_DESC" property="menuDesc" jdbcType="VARCHAR" />
+    <result column="CREATOR" property="creator" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATER" property="updater" jdbcType="VARCHAR" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="BG_URL" property="bgUrl" jdbcType="VARCHAR" />
+    <result column="MENU_URL_TWO" property="menuUrlTwo" jdbcType="VARCHAR" />
+    <result column="STYLE_INFO" property="styleInfo" jdbcType="VARCHAR" />
+    <result column="BUTTON_NAME" property="buttonName" jdbcType="VARCHAR" />
+    <result column="LIST_ORDER" property="listOrder" jdbcType="DECIMAL" />
+    <collection property="roles" column="MENU_NO" ofType="com.icss.model.RoleBean" select="com.icss.dao.RoleBeanMapper.selectByMenuNo" />
+  </resultMap>
+
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+
+  <sql id="Base_Column_List" >
+    ID, MENU_NO, NAME, MENU_URL, TYPE, STATUS, MENU_LEVEL, SUPER_NO, MENU_DESC, CREATOR, 
+    CREATE_TIME, UPDATER, UPDATE_TIME, REMARK, BG_URL , MENU_URL_TWO, STYLE_INFO, BUTTON_NAME
+  </sql>
+ 
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from MACS_T_MENU
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+
+  <select id="getAllMenu" resultMap="BaseResultMap">
+    select  * from MACS_T_MENU
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from MACS_T_MENU
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+
+  <insert id="insert" parameterType="com.icss.model.MenuBean" >
+    insert into MACS_T_MENU (ID, MENU_NO, NAME, 
+      MENU_URL, TYPE, STATUS, 
+      MENU_LEVEL, SUPER_NO, MENU_DESC, 
+      CREATOR, CREATE_TIME, UPDATER, 
+      UPDATE_TIME, REMARK, BG_URL ,MENU_URL_TWO, STYLE_INFO ,BUTTON_NAME
+      )
+    values (#{id,jdbcType=VARCHAR}, #{menuNo,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{menuUrl,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{status,jdbcType=DECIMAL}, 
+      #{menuLevel,jdbcType=DECIMAL}, #{superNo,jdbcType=VARCHAR}, #{menuDesc,jdbcType=VARCHAR}, 
+      #{creator,jdbcType=VARCHAR}, #{createTime,jdbcType=DATE}, #{updater,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=DATE}, #{remark,jdbcType=VARCHAR}, #{bgUrl,jdbcType=VARCHAR},
+       #{menuUrlTwo,jdbcType=VARCHAR}, #{styleInfo,jdbcType=VARCHAR}, #{buttonName,jdbcType=VARCHAR}
+      )
+  </insert>
+
+  <insert id="insertSelective" parameterType="com.icss.model.MenuBean" >
+    insert into MACS_T_MENU
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="menuNo != null" >
+        MENU_NO,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="menuUrl != null" >
+        MENU_URL,
+      </if>
+      <if test="type != null" >
+        TYPE,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="menuLevel != null" >
+        MENU_LEVEL,
+      </if>
+      <if test="superNo != null" >
+        SUPER_NO,
+      </if>
+      <if test="menuDesc != null" >
+        MENU_DESC,
+      </if>
+      <if test="creator != null" >
+        CREATOR,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updater != null" >
+        UPDATER,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+      <if test="bgUrl != null" >
+        BG_URL,
+      </if>
+      <if test="menuUrlTwo != null" >
+        MENU_URL_TWO,
+      </if>
+      <if test="bgUrl != null" >
+        STYLE_INFO,
+      </if>
+       <if test="buttonName != null" >
+        BUTTON_NAME
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="menuNo != null" >
+        #{menuNo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="menuUrl != null" >
+        #{menuUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=DECIMAL},
+      </if>
+      <if test="menuLevel != null" >
+        #{menuLevel,jdbcType=DECIMAL},
+      </if>
+      <if test="superNo != null" >
+        #{superNo,jdbcType=VARCHAR},
+      </if>
+      <if test="menuDesc != null" >
+        #{menuDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null" >
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=DATE},
+      </if>
+      <if test="updater != null" >
+        #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=DATE},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="bgUrl != null" >
+        #{bgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="menuUrlTwo != null" >
+        #{menuUrlTwo,jdbcType=VARCHAR},
+      </if>
+      <if test="styleInfo != null" >
+        #{styleInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="buttonName != null" >
+        #{buttonName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+ 
+  <update id="updateByPrimaryKeySelective" parameterType="com.icss.model.MenuBean" >
+    update MACS_T_MENU
+    <set >
+      <if test="menuNo != null" >
+        MENU_NO = #{menuNo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="menuUrl != null" >
+        MENU_URL = #{menuUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        TYPE = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=DECIMAL},
+      </if>
+      <if test="menuLevel != null" >
+        MENU_LEVEL = #{menuLevel,jdbcType=DECIMAL},
+      </if>
+      <if test="superNo != null" >
+        SUPER_NO = #{superNo,jdbcType=VARCHAR},
+      </if>
+      <if test="menuDesc != null" >
+        MENU_DESC = #{menuDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null" >
+        CREATOR = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=DATE},
+      </if>
+      <if test="updater != null" >
+        UPDATER = #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=DATE},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="bgUrl != null" >
+        BG_URL = #{bgUrl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <update id="updateByPrimaryKey" parameterType="com.icss.model.MenuBean" >
+    update MACS_T_MENU
+    set MENU_NO = #{menuNo,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      MENU_URL = #{menuUrl,jdbcType=VARCHAR},
+      TYPE = #{type,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=DECIMAL},
+      MENU_LEVEL = #{menuLevel,jdbcType=DECIMAL},
+      SUPER_NO = #{superNo,jdbcType=VARCHAR},
+      MENU_DESC = #{menuDesc,jdbcType=VARCHAR},
+      CREATOR = #{creator,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=DATE},
+      UPDATER = #{updater,jdbcType=VARCHAR},
+      UPDATE_TIME = #{updateTime,jdbcType=DATE},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      BG_URL = #{bgUrl,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  
+  <select id="selectRoleMenuByModel" resultMap="MenuModelMap" parameterType="com.icss.model.MenuModel" >
+    select
+    <include refid="Base_Column_List" />
+    from MACS_T_MENU
+    where 1=1 
+    <if test="menuNo != null">
+	   AND MENU_NO = #{menuNo,jdbcType=VARCHAR}
+      </if>
+      <if test="name != null">
+       AND NAME = #{name,jdbcType=VARCHAR}
+      </if>
+      <if test="menuUrl != null">
+       AND MENU_URL = #{menuUrl,jdbcType=VARCHAR}
+      </if>
+      <if test="type != null">
+       AND TYPE = #{type,jdbcType=VARCHAR}
+      </if>
+      <if test="status != null" >
+		AND STATUS=#{status,jdbcType=DECIMAL}
+	  </if>
+      <if test="menuLevel != null" >
+		AND MENU_LEVEL=#{menuLevel,jdbcType=DECIMAL}
+	  </if>
+	  <if test="superNo != null" >
+	  	AND SUPER_NO=#{superNo,jdbcType=VARCHAR}
+	  </if>
+	  <if test="menuDesc != null" >
+	   AND MENU_DESC=#{menuDesc,jdbcType=VARCHAR}
+	  </if>
+  </select>
+
+  <select id="getMenuListByRoleName" resultMap="MenuModelMap" parameterType="java.lang.String">
+      select * from MACS_T_MENU t
+      left join (
+               select r.id,r.name,m.menu_no from MACS_T_ROLE r
+               left join MACS_T_ROLE_MENU m on r.id=m.role_id
+               where r.name='${_parameter}'
+           ) a
+      on 1=1
+      where a.menu_no=t.menu_no and t.menu_level='1'
+  </select>
+  
+  <select id="getMenuListByMenuModel" resultMap="MenuModelMap" parameterType="java.lang.String">
+      select t.* from MACS_T_MENU t
+      left join (
+              select r.id,r.name,m.menu_no from MACS_T_ROLE r
+              left join MACS_T_ROLE_MENU m on r.id=m.role_id
+              where 1=1
+              <if test="name != null">
+                 AND r.name = #{name,jdbcType=VARCHAR}
+               </if>
+            ) a
+      on 1=1
+      where a.menu_no=t.menu_no
+        <if test="menuNo != null">
+         AND t.MENU_NO = #{menuNo,jdbcType=VARCHAR}
+        </if>
+        <if test="menuUrl != null">
+         AND t.MENU_URL = #{menuUrl,jdbcType=VARCHAR}
+        </if>
+        <if test="type != null">
+         AND t.TYPE = #{type,jdbcType=VARCHAR}
+        </if>
+        <if test="status != null" >
+          AND t.STATUS=#{status,jdbcType=DECIMAL}
+        </if>
+        <if test="menuLevel != null" >
+          AND t.MENU_LEVEL=#{menuLevel,jdbcType=DECIMAL}
+        </if>
+        <if test="superNo != null" >
+          AND t.SUPER_NO=#{superNo,jdbcType=VARCHAR}
+        </if>
+        <if test="menuDesc != null" >
+         AND t.MENU_DESC=#{menuDesc,jdbcType=VARCHAR}
+        </if>
+         <if test="creator != null" >
+          AND t.CREATOR = #{creator,jdbcType=VARCHAR},
+        </if>
+        <if test="createTime != null" >
+          AND t.CREATE_TIME = #{createTime,jdbcType=DATE},
+        </if>
+        <if test="updater != null" >
+          AND t.UPDATER = #{updater,jdbcType=VARCHAR},
+        </if>
+        <if test="updateTime != null" >
+          AND t.UPDATE_TIME = #{updateTime,jdbcType=DATE},
+        </if>
+        <if test="remark != null" >
+          AND t.REMARK = #{remark,jdbcType=VARCHAR},
+        </if>
+        <if test="bgUrl != null" >
+          AND t.BG_URL = #{bgUrl,jdbcType=VARCHAR},
+        </if>
+         <if test="menuUrlTwo != null" >
+          AND t.MENU_URL_TWO=#{menuUrlTwo,jdbcType=VARCHAR},
+        </if>
+        <if test="styleInfo != null" >
+          AND t.STYLE_INFO=#{styleInfo,jdbcType=VARCHAR},
+        </if>
+        <if test="buttonName != null" >
+          AND t.BUTTON_NAME=#{buttonName,jdbcType=VARCHAR}
+        </if>
+        order by t.LIST_ORDER
+  </select>
+  
+</mapper>

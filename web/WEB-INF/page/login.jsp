@@ -1,0 +1,84 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>login</title>
+<%--<link type="text/css" rel="stylesheet" href="./commons/css/reset.css" />--%>
+<%--<link type="text/css" rel="stylesheet" href="./css/login.css" />--%>
+</head>
+
+<body class="loginpage">
+	<div class="loginwrap">
+		<div>
+			<form class="loginForm" action="/icss/j_spring_security_check" method="post">
+				<div class="userCodeDiv">
+					<input autocomplete="off" type="text" maxlength="255"
+						id="usernameInput" name="j_username" class="textinput"
+						   placeholder="请输入用户名">
+				</div>
+				<div class="passwordDiv">
+					<input autocomplete="off" type="password" maxlength="255"
+						id="passwordInput" name="j_password" value="123456" class="textinput"
+						placeholder="请输入用户密码">
+				</div>
+				<div class="loginButtonDiv">
+					<input type="button" id="submitButton" class="loginButton" value="登录" >
+				</div>
+				<div class="errorInfoDiv" id="errorInfoDiv">
+                    密码正确
+					<!--<%-->
+						<!--try {-->
+							<!--if (((org.springframework.security.authentication.BadCredentialsException) session-->
+									<!--.getAttribute("SPRING_SECURITY_LAST_EXCEPTION")).getMessage().equals("Bad credentials")) {-->
+					<!--%>-->
+					<!--用户名或密码错误！-->
+					<!--<%-->
+						<!--} else {-->
+					<!--%>-->
+					<!--${sessionScope['SPRING_SECURITY_LAST_EXCEPTION'].message}-->
+
+					<!--<%-->
+						<!--}-->
+						<!--} catch (Exception e) {-->
+						<!--}-->
+					<!--%>-->
+				</div>
+			</form>
+		</div>
+		<div class="versiondata">版权所有 © 海能达通信股份有限公司</div>
+	</div>
+
+	<%--<script type="text/javascript" src="./js/jquery.min.js"></script>--%>
+	<script>
+
+        $("#submitButton").click(function(e){
+            doLogin();
+        });
+
+		function doLogin() {
+			$("#errorInfoDiv").html('&nbsp;');
+			var username = $("#usernameInput").val();
+            var password = $("#passwordInput").val();
+			if (!username) {
+				$(".errorInfoDiv").html("&nbsp;请输入用户名");
+				return false;
+			}
+			if (!password) {
+				$("#errorInfoDiv").html("&nbsp;请输入密码");
+				$("#passwordInput").focus();
+				return false;
+			}
+			$(".loginForm").submit();
+		}
+
+		//Enter键提交form
+		$(".loginForm").keydown(function(e) {
+			var e = e || event;
+			var keycode = e.which || e.keyCode;
+			if (keycode == 13) {
+				doLogin();
+			}
+		});
+	</script>
+</body>
+</html>

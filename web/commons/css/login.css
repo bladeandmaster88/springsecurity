@@ -1,0 +1,32 @@
+body,html{height:100%;color:#404f62;}
+*{font-size:16px;}
+
+.loginpage{background:url(../img/loginpagebg.jpg) center center no-repeat}
+.loginwrap{position:absolute;width:960px;height:530px;left:0;top:0;bottom:0;right:0;margin:auto;
+background:#fff url(../img/loginbg.png) 0 0 no-repeat;}
+
+.loginwrap>div{width:410px;height:100%;float:right;}
+
+.loginForm{margin-top:64px;}
+.loginForm>div{width:75%;margin-left:auto;margin-right:auto;position:relative}
+.loginForm>div>input{width:100%;height:45px;line-height:45px;outline:none}
+.textinput{border:0 none;border-bottom:1px solid #a5aeb8;padding:0 40px;margin-bottom:15px;background-image:url(../img/ico.png);background-repeat:no-repeat;}
+.textinput:focus{border-color:#0984df}
+
+#usernameInput{background-position:0px -918px;}
+#usernameInput:focus{background-position:0px -832px;}
+
+#passwordInput{background-position:0px -961px;}
+#passwordInput:focus{background-position:0px -875px;}
+
+.getpassword{margin-bottom:10px;color:#a8a8a8;height:22px;font-size:14px;}
+.checkinput{width:auto;padding-left:20px;line-height:15px;color:#a8a8a8;font-size:14px;background:url(../img/ico.png) 0 -1122px no-repeat;cursor:pointer}
+.checkinput.checked{background:url(../img/ico.png) 0 -1088px no-repeat;}
+
+.loginButtonDiv{margin-top:30px;}
+.loginButton{background:#0984df;color:#fff;font-size:20px;border:0 none;}
+.loginButton:hover{background:#0d98fe;}
+
+.errorInfoDiv{color:#ee5859;margin-top:10px;font-size:14px;}
+
+.loginwrap .versiondata{position:absolute;bottom:10px;width:550px;height:20px;line-height:20px;color:#fff;left:0;text-align:center;font-size:14px;}

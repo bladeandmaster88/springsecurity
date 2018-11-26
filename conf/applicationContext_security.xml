@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:s="http://www.springframework.org/schema/security" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/security 
+    http://www.springframework.org/schema/security/spring-security-3.0.xsd"
+	default-lazy-init="true">
+
+	<description>SpringSecurity安全配置</description>
+
+	<!-- http安全配置 -->
+	<s:http auto-config="true" use-expressions="true" access-denied-page="/systemSet/noRole">
+        <s:intercept-url pattern="/commons/**" filters="none" />
+		<s:intercept-url pattern="/*.jsp" filters="none" />
+		<s:intercept-url pattern="/**/*.js" filters="none" />
+		<s:intercept-url pattern="/**/*.css" filters="none" />
+		<s:intercept-url pattern="/**/*.jpg" filters="none" />
+		<s:intercept-url pattern="/**/*.png" filters="none" />
+
+		<!--<s:intercept-url pattern="/*" access="isAuthenticated()" />-->
+        <s:intercept-url pattern="/page/login" access="permitAll" />
+		<!--<s:intercept-url pattern="/login" access="permitAll" />-->
+		<!--<s:intercept-url pattern="/login" filters="none" />-->
+
+        <s:form-login login-page="/login" authentication-success-handler-ref="loginLogHandler" />
+		<s:remember-me token-validity-seconds="-1" /> 
+
+		<!-- 增加一个filter，这点与Acegi是不一样的，不能修改默认的filter了，这个filter位于FILTER_SECURITY_INTERCEPTOR之前 -->
+		<s:custom-filter before="FILTER_SECURITY_INTERCEPTOR" ref="myFilter" />
+	</s:http>
+
+	<!-- 方法安全配置 -->
+	<s:global-method-security secured-annotations="enabled" />
+
+	<!-- 自定义filter，必须包含authenticationManager,accessDecisionManager,securityMetadataSource三个属性， -->
+	<bean id="myFilter" class="com.icss.security.MyFilterSecurityInterceptor">
+		<property name="authenticationManager" ref="authenticationManager" />
+		<property name="accessDecisionManager" ref="myAccessDecisionManagerBean" />
+		<property name="securityMetadataSource" ref="securityMetadataSource" />
+	</bean>
+
+    <!-- 自定义UserDetailsService -->
+    <bean id="userDetailsService" class="com.icss.security.MyUserDetailsService" />
+    <!-- 自定义PasswordEncoder -->
+    <bean id="passWordEncoder" class="com.icss.security.MyPasswordEncoder" />
+
+    <!-- 认证配置, 使用userDetailsService提供的用户信息 -->
+    <s:authentication-manager alias="authenticationManager">
+        <s:authentication-provider user-service-ref="userDetailsService">
+            <s:password-encoder ref="passWordEncoder">
+                <s:salt-source user-property="username" />
+            </s:password-encoder>
+        </s:authentication-provider>
+    </s:authentication-manager>
+
+	<!-- 访问决策器，决定某个用户具有的角色，是否有足够的权限去访问某个资源 -->
+	<bean id="myAccessDecisionManagerBean" class="com.icss.security.MyAccessDecisionManager" />
+
+	<bean id="dbSecurityInfo" class="com.icss.security.DbSecurityInfo"></bean>
+	<!-- 资源源数据定义，即定义某一资源可以被哪些角色访问 -->
+	<bean id="securityMetadataSource" class="com.icss.security.MyInvocationSecurityMetadataSource">
+		<constructor-arg name="dbSecurityInfo" ref="dbSecurityInfo" />
+	</bean>
+</beans>

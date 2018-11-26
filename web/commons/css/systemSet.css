@@ -1,0 +1,48 @@
+.table-wrap{width:96%;margin:20px auto;overflow:hidden;height:calc(100% - 40px);overflow-y:auto;background-color:#fff}
+.table-wrap .menu-bar{height: 45px;width: 100%;background-color: #f9fafc;border-bottom: 1px solid #eaedf1;}
+.menu-bar .title{height:100%;line-height: 45px;margin-left: 11px;font-weight: bold;float: left;font-size:15px}
+.title .bar-blue{margin-left:11px;display: inline-block;width: 5px;height: 18px;border-radius: 1px;background-color: #5d8dfd;margin-top: -2px;vertical-align: middle;}
+.menu-bar .menu{float:left;margin-left:30px;color:#494949;vertical-align: bottom;}
+.menu-bar .menu li{display: inline-block;margin-left:20px;text-align: center;width: 86px;margin-top: 10px;cursor: pointer;line-height: 35px;height: 35px;}
+.menu-bar .menu li.current{background: #ffffff;color: #5285fb;border:1px solid #eaedf1;border-bottom-color: transparent;}
+.layerWrap{position: relative; padding: 10px;}
+.layerWrap .lineWrapper{margin-bottom: 10px;}
+.layerWrap .input-txt{border: 1px solid; border-color: #9a9292; width: 250px; height: 30px; border-radius: 3px; margin-left: 15px; padding-left: 20px}
+.layerWrap .input-disable{border-color: red;}
+.action-btn{margin:10px}
+.action-btn .add-btn{width:70px;height: 30px;background:  #5d8dfd;color: #fff;margin-left:20px;border-radius: 5px;position: relative;padding-left:20px}
+.action-btn .add-btn:hover{opacity:0.9}
+.action-btn .add-btn:after,.add-btn:before{content:"";position: absolute;width:3px;height:15px;background-color: #fff;top:8px;left:14px;}
+.action-btn .add-btn:before{transform: rotate(90deg);}
+.table-wrap .table-outter{height: calc(100% - 100px);overflow: auto;width: 98%;margin: 0 auto;}
+.rollcall-table{width:100%;table-layout: fixed;margin:0 auto ;display:none}
+.rollcall-table.current{display:table}
+.rollcall-table tr{position:relative;}
+.rollcall-table tr:nth-child(even){background:rgba(218,230,242,1);}
+.rollcall-table tr:nth-child(odd){background: rgba(209,221,233,1);}
+.rollcall-table tbody tr:hover{background:#91C7E7;}
+.rollcall-table tr{display:none;-ms-user-select:none;-moz-user-select:none;}
+.rollcall-table th{line-height:40px;background:#DAE6F2;border:none;border-bottom:2px solid #6C7A8D;white-space:nowrap;overflow:hidden;text-overflow: ellipsis;}
+.rollcall-table td{line-height:40px;text-align:center;border-bottom:1px solid #C8D4DE;white-space:nowrap;overflow:hidden;text-overflow: ellipsis;}
+.navlist>li.systemSet>a{background:url(../img/menu-hover.png) no-repeat 0 0;transition:all 0.3s 0s ease-out;-ms-transition:all 0.3s 0s ease-out;}
+.label{margin-bottom:5px;display:block}
+.addbtn{width: 140px; height: 40px;background: green;border-radius: 5px;margin:15px 15px 10px 0;color: #fff;display: inline-block;border: 2px solid #fff;line-height: 36px;font-size: 16px;text-align: center;opacity: 0.9;cursor: pointer;}
+.delbtn{width: 80px; height: 30px;background:#BD1C08;border-radius: 5px;margin:15px 15px 10px 0;color: #fff;display: inline-block;border: 2px solid #fff;line-height: 30px;text-align: center;opacity: 0.9;cursor: pointer;}
+.editbtn{width: 80px; height: 30px;background:#63a6EF;border-radius: 5px;margin:15px 15px 10px 0;color: #fff;display: inline-block;border: 2px solid #fff;line-height: 30px;text-align: center;opacity: 0.9;cursor: pointer;}
+.userRoleSelect{width:130px;height:30px;position:relative;margin:0 auto;margin-top:5px}
+.userRoleSelect .select-cover,.roleSelect .select-cover{position:absolute;top:0px;left:0px;width:100%;height:100%;line-height:30px;background:#fff;color:#333333;font-size:14px;padding-left:10px;text-align:left}
+.userRoleSelect .select-cover .selectButton{position:absolute;right:10px;top:10px;}
+.userRoleSelect .select-cover .selectButton:after,.userRoleSelect .select-cover .selectButton:before,.roleSelect .select-cover .selectButton:after,.roleSelect .select-cover .selectButton:before{content:"";position:absolute;width:2px;height:10px;background:#c3c3c8;transform:rotate(45deg)}
+.userRoleSelect .select-cover .selectButton:after,.roleSelect .select-cover .selectButton:after{transform:rotate(-45deg);left:-6px}
+.userRoleSelect .select-cover .select-value{width:110px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden}
+.userRoleSelect select,.roleSelect select{border:none;background:#fff;width:100%;height:30px;line-height:30px;opacity:0;padding-left:5px;position:relative;z-index:1}
+.roleSelect{width:250px;margin-left: 15px;position:relative;height:30px}
+.roleSelect .select-cover .selectButton{position:absolute;right:10px;top:10px;}
+.roleSelect .select-cover{border:1px solid #9a9292;border-radius:3px;}
+#addRoleInfo .authorityList,#editRoleInfo .authorityList{border:1px solid #9a9292;width:250px;border-radius: 3px; margin-left: 15px; padding-left: 20px;padding-top:10px;}
+.authorityList .choice{display: inline-block;width: 94px;margin-bottom: 10px;cursor: pointer;float: left;}
+.authorityList .check-box{width: 18px;height: 18px;border: 1px solid #848d9a;margin-top: 2px;margin-right: 5px;} 
+.check-box.checked {background: #1380cc;position: relative;}
+.check-box.checked:before{position:absolute;width:2px;height: 7px;left: 3px;top: 5px;background:#fff;transform: rotate(-38deg);content:""}
+.check-box.checked:after{position:absolute;width:2px;height: 12px;left: 9px;top: 2px;background:#fff;transform: rotate(52deg);content:""}
+

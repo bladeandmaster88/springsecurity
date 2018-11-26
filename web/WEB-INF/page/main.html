@@ -1,0 +1,72 @@
+<html>
+	<head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>主页</title>
+		<link rel="stylesheet" type="text/css" href="./js/layui/css/layui.css?v=1.1">
+		<link rel="stylesheet" type="text/css" href="./css/reset.css">
+		<link rel="stylesheet" type="text/css" href="./css/common.css">
+		<link rel="stylesheet" type="text/css" href="./css/main.css">
+		<link rel="stylesheet" type="text/css" href="./css/nav.css">
+	</head>
+	<body>
+		<div class="header">
+            <div class="headerbg-l"></div>
+            <div class="headerbg-r"></div>
+            <h1>全国公安PDT联网调度平台</h1>
+            <a href="#" class="map-icon" onclick="indexControl()"></a>
+            <div class="header-toolbar">
+                <div class="alarm-menu">
+                    <a href="###" class="ico-alarm"></a> <label class="alarm-number"></label>
+                </div>
+                <a href="###" class="ico-systerm"></a>
+                <a href="###"class="ico-userinfo"></a>
+                <a href="###" onclick="logOut()" class="ico-logout"></a>
+            </div>
+		</div>
+
+		<div class="container">
+			<div class="left">
+                <div class="nav">
+                    <ul class="navlist">
+                        <li class="communicate-dispatch" >
+                            <a onclick="changeTap($(this),'index')" href="#">
+                                <div class="nav-ico nav-ico-1"></div>
+                                <p>首页</p>
+                            </a>
+                        </li>
+                        <li class="resource-map">
+                            <a onclick="changeToMap($(this),'resourceMap')" href="#">
+                                <div class="nav-ico nav-ico-3"></div>
+                                <p>地图应用</p>
+                            </a>
+                        </li>
+                        <li class="systemSet">
+                            <a onclick="changeTap($(this),'systemSet')" href="#">
+                                <div class="nav-ico nav-ico-9"></div>
+                                <p>系统设置</p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+			</div>
+
+			<div class="content padding40">
+				<div class="subpagewrap">
+					<div class="iframe-wrap">
+						<iframe id="moudle"  param="index" src="/icss/index" style="height:100%;width:100%;visibility:hidden" frameborder="0" onload="document.getElementById('moudle').style.visibility='visible'"></iframe>
+					</div>						
+				</div>
+			</div>
+		</div>
+
+        <script type="text/javascript" src="./js/jquery.min.js"></script>
+		<script type="text/javascript" src="./js/layui/layui.js?v=1.1"></script>
+		<script type="text/javascript" src="./js/hashMap.js"></script>
+		<script type="text/javascript" src="./js/dateFormat.js"></script>
+		<script type="text/javascript" src="./js/dataChangeByAjax.js"></script>
+        <script type="text/javascript" src="./js/layerMsg.js"></script>
+        <script type="text/javascript"  src="./js/Guid.js"></script>
+		<script type="text/javascript" src="./js/main/showControl.js"></script>
+       <script type="text/javascript" src="./js/main/main.js"></script>
+	</body>
+</html>

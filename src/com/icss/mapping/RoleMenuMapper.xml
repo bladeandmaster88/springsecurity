@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.icss.dao.RoleMenuMapper" >
+  <resultMap id="BaseResultMap" type="com.icss.model.RoleMenu" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="ROLE_ID" property="roleId" jdbcType="VARCHAR" />
+    <result column="MENU_NO" property="menuNo" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    ID, ROLE_ID, MENU_NO
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from MACS_T_ROLE_MENU
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from MACS_T_ROLE_MENU
+    where ROLE_ID = #{roleId,jdbcType=VARCHAR}
+  </delete>
+   <delete id="delRoleMenuByRoleId" parameterType="java.lang.String" >
+    delete from MACS_T_ROLE_MENU
+    where ROLE_ID = #{roleId,jdbcType=VARCHAR}
+  </delete>
+ 
+  <insert id="insert" parameterType="com.icss.model.RoleMenu" >
+    insert into MACS_T_ROLE_MENU (ID, ROLE_ID, MENU_NO
+      )
+    values (#{id,jdbcType=VARCHAR}, #{roleId,jdbcType=VARCHAR}, #{menuNo,jdbcType=VARCHAR}
+      )
+  </insert>
+   <insert id="addRoleMenu" parameterType="com.icss.model.RoleMenu" >
+    insert into MACS_T_ROLE_MENU (ID, ROLE_ID, MENU_NO
+      )
+    values (#{id,jdbcType=VARCHAR}, #{roleId,jdbcType=VARCHAR}, #{menuNo,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.icss.model.RoleMenu" >
+    insert into MACS_T_ROLE_MENU
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="roleId != null" >
+        ROLE_ID,
+      </if>
+      <if test="menuNo != null" >
+        MENU_NO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null" >
+        #{roleId,jdbcType=VARCHAR},
+      </if>
+      <if test="menuNo != null" >
+        #{menuNo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.icss.model.RoleMenu" >
+    update MACS_T_ROLE_MENU
+    <set >
+      <if test="roleId != null" >
+        ROLE_ID = #{roleId,jdbcType=VARCHAR},
+      </if>
+      <if test="menuNo != null" >
+        MENU_NO = #{menuNo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.icss.model.RoleMenu" >
+    update MACS_T_ROLE_MENU
+    set ROLE_ID = #{roleId,jdbcType=VARCHAR},
+      MENU_NO = #{menuNo,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

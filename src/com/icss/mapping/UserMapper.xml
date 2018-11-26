@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!--通过mapper代理方式namespace必须加包名-->
+<mapper namespace="com.icss.dao.UserMapper">
+	<resultMap id="BaseResultMap" type="com.icss.model.UserInfo">
+		<id column="GUID" property="guid" jdbcType="VARCHAR" />
+		<result column="USER_CODE" property="userCode" jdbcType="VARCHAR" />
+		<result column="PASSWORD" property="password" jdbcType="VARCHAR" />
+		<result column="NAME" property="name" jdbcType="VARCHAR" />
+		<result column="STATUS" property="status" jdbcType="VARCHAR" />
+		<result column="CREATE_USER" property="createUser" jdbcType="VARCHAR" />
+		<result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="UPDATE_USER" property="updateUser" jdbcType="VARCHAR" />
+		<result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+		<result column="REMARK" property="remark" jdbcType="VARCHAR" />
+		<result column="ROLENAME" property="roleName" jdbcType="VARCHAR" />
+		<result column="ROLEID" property="roleId" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<select id="selectAll" resultMap="BaseResultMap">
+		select i.*,mr.id as roleId,mr.name as roleName from ICSS_USER_INFO i
+		left join MACS_T_USER_ROLE m on i.guid=m.user_id
+		left join MACS_T_ROLE mr on m.role_id=mr.id
+		 order by i.create_time,i.update_time
+	</select>
+
+	<select id="selectUserCode" resultMap="BaseResultMap">
+		select * from ICSS_USER_INFO
+		where user_code = #{userCode,jdbcType=VARCHAR}
+	</select>
+
+	<select id="isValidUser" resultMap="BaseResultMap">
+		select * from ICSS_USER_INFO
+		where user_code = #{username,jdbcType=VARCHAR}
+		and
+		password=#{password,jdbcType=VARCHAR}
+		and
+		status=1
+	</select>
+
+	<insert id="addUser">
+		insert into ICSS_USER_INFO (GUID, USER_CODE, PASSWORD, NAME, STATUS,
+		CREATE_USER, CREATE_TIME, UPDATE_USER, UPDATE_TIME, REMARK )
+		values (#{guid,jdbcType=VARCHAR}, #{userCode,jdbcType=VARCHAR},
+		#{password,jdbcType=VARCHAR},
+		#{name,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{createUser,jdbcType=VARCHAR},
+		#{createTime,jdbcType=VARCHAR}, #{updateUser,jdbcType=VARCHAR},
+		#{updateTime,jdbcType=VARCHAR},
+		#{remark,jdbcType=VARCHAR} )
+	</insert>
+
+	<update id="delUser">
+		update ICSS_USER_INFO
+		set
+		STATUS =  #{status,jdbcType=VARCHAR},
+		UPDATE_USER = #{updateUser,jdbcType=VARCHAR},
+		UPDATE_TIME =#{updateTime,jdbcType=VARCHAR}
+		where USER_CODE = #{userCode,jdbcType=VARCHAR}
+	</update>
+
+	<update id="editUser">
+		update ICSS_USER_INFO
+		set
+		<if test="password!=null and password!=''">
+			PASSWORD = #{password,jdbcType=VARCHAR},
+		</if>
+		<if test="name!=null and name!=''">
+			NAME = #{name,jdbcType=VARCHAR},
+		</if>
+		UPDATE_USER = #{updateUser,jdbcType=VARCHAR},
+		UPDATE_TIME =
+		#{updateTime,jdbcType=VARCHAR}
+		where USER_CODE = #{userCode,jdbcType=VARCHAR}
+	</update>
+
+	<select id="selectByUserNo" resultMap="BaseResultMap">
+		select * from ICSS_USER_INFO
+		where user_code = #{userNo,jdbcType=VARCHAR}
+		and
+		status=1
+	</select>
+</mapper>

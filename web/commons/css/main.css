@@ -1,0 +1,89 @@
+body{-webkit-user-select: none;user-select:none;-webkit-touch-callout:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;background:url(../img/bodybg.jpg) center center no-repeat; !important}
+.tab-nochecked{cursor: pointer;width: 190px; height: 40px;margin-right:3px; background: #6a8299;display: inline-block;text-align: center;line-height: 40px;color: white;font-size: 15px;}
+.tab-checked{cursor: pointer;border-bottom: 3px solid white;background:#1480cc;width: 190px; height: 40px;margin-right:3px;display: inline-block;text-align: center;line-height: 40px;color: white;font-size: 15px;}
+.hidden{display:none}
+.show{display:block}
+.conference-panel{cursor: pointer;position: relative;float: left; margin: 40px; width: 200px;  height: 111px; background: rgba(23,40,75,0.8);color: white;border-radius: 5px;}
+.conference-title{margin-top: 30px;text-align: center; font-size: 20px; text-overflow: ellipsis; overflow: hidden;}
+.addconference{margin-top: 30px;text-align: center; font-size: 20px;}
+.addconference-panel{cursor: pointer;position: relative;float: left; margin: 40px; width: 200px;  height: 111px; background: rgba(23,40,75,0.8);color: white;border-radius: 5px;}
+.conference-date{margin-top: 4px;text-align: center; font-size: 17px;}
+.addconference-panel:hover{outline: #747b89 dashed;outline-width: 1px;}
+.conference-panel:hover{outline: #747b89 dashed;outline-width: 1px;}
+.close-icon{
+	cursor: pointer;
+	background: url(../img/ic20_callPropertyVideoAct.png) -60px -60px no-repeat;
+	width: 18px;
+    height: 18px;
+    float: right;
+    margin-right: -55px;
+    margin-top: 13px;
+    display: inline-block;
+}
+
+.max-icon{
+	cursor: pointer;
+	background: url(../img/full_screen_24.png) 0px -30px no-repeat;
+	width: 18px;
+    height: 18px;
+    float: right;
+    margin-right: 50px;
+    margin-top: 13px;
+    display: inline-block;
+}
+.min-icon{
+	cursor: pointer;
+	background: url(../img/full_screen_24.png) 0px 0px no-repeat;
+	width: 18px;
+    height: 18px;
+    float: right;
+    margin-right: 50px;
+    margin-top: 13px;
+    display: inline-block;
+}
+.edit-icon{
+	cursor: pointer;
+	background: url(../img/u86.png) 0px 17px;
+    width: 18px;
+    height: 18px;
+    margin-left: 8px;
+    margin-top: 13px;
+    display: inline-block;
+    vertical-align: -2px;
+}
+.conference-name{
+	color: #c1e2ff;
+    font-size: 20px;
+}
+.conference-icon{
+	background: url(../img/u84.png);
+    display: inline-block;
+    width: 34px;
+    height: 30px;
+    vertical-align: -9px;
+    margin-right: 8px;
+}
+.add-btn{
+    cursor: pointer;
+    background: url(../img/u217.png);
+    width: 24px;
+    height: 24px;
+    margin-top: 13px;
+    display: inline-block;
+    margin-right: 8px;
+    vertical-align: -3px;
+}
+.conference-del{
+	position: relative;
+    top: -92px;
+    right: -8px;
+}
+.del-icon{
+	display:none;
+	cursor: pointer;
+	background: url(../img/ic20_callPropertyVideoAct.png) -60px -60px no-repeat;
+	width: 18px;
+    height: 18px;
+    float: right;
+ /*    display: inline-block; */
+}

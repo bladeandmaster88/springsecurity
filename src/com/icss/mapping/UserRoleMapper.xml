@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.icss.dao.UserRoleMapper" >
+  <resultMap id="BaseResultMap" type="com.icss.model.UserRole" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="ROLE_ID" property="roleId" jdbcType="VARCHAR" />
+    <result column="USER_ID" property="userId" jdbcType="VARCHAR" />
+    <result column="USER_DEP" property="userDep" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    ID, ROLE_ID, USER_ID, USER_DEP
+  </sql>
+
+  <!--<insert id="insertUserRole" parameterType="com.icss.model.UserRole" >-->
+    <!--insert into MACS_T_USER_ROLE (ID, ROLE_ID, USER_ID, -->
+      <!--USER_DEP)-->
+    <!--values (#{id,jdbcType=VARCHAR}, #{roleId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, -->
+      <!--#{userDep,jdbcType=VARCHAR})-->
+  <!--</insert>-->
+
+  <insert id="addRoleForUser">
+     merge into MACS_T_USER_ROLE m  USING
+     (select #{userId,jdbcType=VARCHAR} as userId from dual ) n
+     on (n.userId=m.USER_ID)
+     when matched then
+    	update set m.ROLE_ID = #{roleId,jdbcType=VARCHAR}
+   	when not matched THEN
+        insert (ID, ROLE_ID, USER_ID)
+    values (#{id,jdbcType=VARCHAR}, #{roleId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR} )
+  </insert>
+</mapper>
