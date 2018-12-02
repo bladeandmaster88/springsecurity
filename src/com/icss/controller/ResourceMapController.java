@@ -10,6 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 public class ResourceMapController {
     @RequestMapping
     public String index(HttpServletRequest request){
-        return "page/resourceMap";
+        return "resourceMap";
     }
 }

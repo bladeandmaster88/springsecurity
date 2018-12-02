@@ -23,9 +23,11 @@ public class MyAccessDecisionManager implements AccessDecisionManager {
         }
         logger.debug("正在访问的url是：" + object.toString()); // object is a URL.
         Iterator<ConfigAttribute> ite = configAttributes.iterator();
+        //configAttributes保存的是可以访问object（url)这个url的所有角色
+        //判断当前访问这个url的角色是不是configAttributes中的角色
         while (ite.hasNext()) {
             ConfigAttribute ca = ite.next();
-            String needRole = ((SecurityConfig) ca).getAttribute();
+            String needRole = ((SecurityConfig) ca).getAttribute();//获得角色名称
             logger.debug("neddRole is:" + needRole);
             for (GrantedAuthority ga : authentication.getAuthorities()) {
                 if (needRole.equals(ga.getAuthority())) { // ga is user's role.
@@ -34,7 +36,7 @@ public class MyAccessDecisionManager implements AccessDecisionManager {
                 }
             }
         }
-        throw new AccessDeniedException("没有权限");
+        throw new AccessDeniedException("没有权限");//表示当前角色没有在configAttributes，
     }
 
     public boolean supports(ConfigAttribute attribute) {

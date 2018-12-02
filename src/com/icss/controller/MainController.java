@@ -19,7 +19,7 @@ public class MainController {
 
     @RequestMapping
     public String index(HttpServletRequest request) {
-        return "page/main";
+        return "main";
     }
 
     @RequestMapping("/getMenu")

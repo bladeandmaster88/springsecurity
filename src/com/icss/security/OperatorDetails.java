@@ -131,13 +131,3 @@
 /* 131:113 */     this.mobile = mobile;
 /* 132:    */   }
 /* 133:    */ }
-
-
-
-/* Location:           E:\icssnew\20180713icss.zip
-
- * Qualified Name:     WEB-INF.classes.com.hytera.icss.security.entity.OperatorDetails
-
- * JD-Core Version:    0.7.0.1
-
- */

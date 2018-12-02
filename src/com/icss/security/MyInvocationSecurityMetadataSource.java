@@ -34,6 +34,7 @@ public class MyInvocationSecurityMetadataSource implements FilterInvocationSecur
         resourceMap = dbSecurityInfo.loadResourceDefine();
     }
 
+    //FilterInvocation对象
     public Collection<ConfigAttribute> getAttributes(Object object)
             throws IllegalArgumentException {
         String url = ((FilterInvocation) object).getRequestUrl();
@@ -41,7 +42,7 @@ public class MyInvocationSecurityMetadataSource implements FilterInvocationSecur
         if (this.urlMatcher.pathMatchesUrl(url, "/system/login")) {
             return null;
         }
-        logger.debug("url 是：" + url);
+        logger.debug("访问的url 是：" + url);
         Iterator<String> ite = resourceMap.keySet().iterator();
         while (ite.hasNext()) {
             String resURL = (String) ite.next();
@@ -68,7 +69,7 @@ public class MyInvocationSecurityMetadataSource implements FilterInvocationSecur
             RoleBean roleModel = new RoleBean();
             roleModel.setStatus(Short.valueOf(new Integer(1).shortValue()));
 
-            List<RoleBean> list = systemSetService.selectByModel(roleModel);
+            List<RoleBean> list = systemSetService.selectByModel(roleModel);//查询出所有可用的角色
             for (RoleBean bean : list) {
                 ConfigAttribute configAttribute = new SecurityConfig(bean.getName());
                 configAttributes.add(configAttribute);

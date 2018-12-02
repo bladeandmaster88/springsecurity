@@ -30,7 +30,7 @@ public class SystemSetController {
 
     @RequestMapping("")
     public String index(HttpServletRequest request) {
-        return "page/systemSet";
+        return "systemSet";
     }
 
     @RequestMapping("/noRole")

@@ -24,10 +24,9 @@
 /*  24:    */   {
 /*  25: 31 */     this.id = (id == null ? null : id.trim());
 /*  26:    */   }
-/*  27:    */   
-/*  28:    */   public String getName()
-/*  29:    */   {
-/*  30: 35 */     return this.name;
+
+/*  28:    */   public String getName() {
+/*  30: 35 */     return this.name;//角色名称 比如管理员，开发人员
 /*  31:    */   }
 /*  32:    */   
 /*  33:    */   public void setName(String name)

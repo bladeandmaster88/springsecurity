@@ -32,17 +32,18 @@
         <!--</property>-->
     <!--</bean>-->
 
-    <!--访问静态资源不用配置下面的mvc-->
-    <!--<mvc:default-servlet-handler/>-->
+    <mvc:default-servlet-handler/>
+
     <!-- 静态资源过滤 -->
-    <!--<mvc:resources location="/page/" mapping="/page/**"/>-->
-    <!--<mvc:resources location="/img/" mapping="/img/**"  cache-period="31556926"/>-->
-    <!--<mvc:resources location="/js/" mapping="/js/**"  cache-period="31556926"/>-->
-    <!--<mvc:resources location="/css/" mapping="/css/**"  cache-period="31556926"/>-->
+    <!--<mvc:resources location="/commons/" mapping="/commons/**"/>-->
+
+    <!--<mvc:resources location="/commons/css/" mapping="/css/**" />-->
+    <!--<mvc:resources location="/commons/img/" mapping="/img/**"/>-->
+    <!--<mvc:resources location="/commons/js/" mapping="/js/**"  />-->
 
     <!-- 配置视图解析器 -->
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/WEB-INF/"></property>
-        <property name="suffix" value=".jsp"></property>
+        <property name="prefix" value="/WEB-INF/page/"></property>
+        <property name="suffix" value=".html"></property>
     </bean>
 </beans>

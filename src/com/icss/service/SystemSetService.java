@@ -78,6 +78,7 @@ public class SystemSetService {
         return roleBeanMapper.selectByUserId(id);
     }
 
+    //查询出所有可用的角色
     public List<RoleBean> selectByModel(RoleBean roleBean) {
         return roleBeanMapper.selectByModel(roleBean);
     }
